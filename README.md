@@ -56,23 +56,26 @@ pip install tensorflow flask numpy matplotlib
 2. Подготовить данные (если требуется):
 
 ```bash
-python scripts/prepare_data.py
+cd scripts
+python prepare_data.py
+
 ```
 
 3. Обучить модель:
 
 ```bash
-python scripts/train_model.py
+python train_model.py
 ```
 
 4. Запустить веб-интерфейс:
 
 ```bash
+cd ..
 python app.py
 ```
 
 После запуска приложение будет доступно по адресу:
-[http://127.0.0.1:5000]
+http://127.0.0.1:5000
 
 ## Архитектура модели
 
