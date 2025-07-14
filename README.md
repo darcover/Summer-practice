@@ -102,7 +102,7 @@ http://127.0.0.1:5000
 В репозиторий не загружены все 11 000 изображений из датасета Furniture Image Dataset, поэтому обученная модель может показывать не лучшую точность. 
 
 Все изображения доступны в виде ZIP‑архива по ссылке:  
-[Скачать изображения (ZIP)]((https://www.kaggle.com/datasets/udaysankarmukherjee/furniture-image-dataset))  
+[Скачать изображения (ZIP)](https://www.kaggle.com/datasets/udaysankarmukherjee/furniture-image-dataset)  
 
 Чтобы полностью воспроизвести результаты вручную расположите картинки по подпапкам `fridge/`, `cupboard/`, `tv/`, `chair/`.  
 
