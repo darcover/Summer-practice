@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Классификация объекта</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card {
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .preview-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card p-4 mb-4">
+          <h3 class="card-title text-center mb-4">Загрузите изображение</h3>
+          <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+              <input
+                class="form-control"
+                type="file"
+                name="image"
+                accept="image/*"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              Классифицировать
+            </button>
+          </form>
+        </div>
+
+        {% if result %}
+        <div class="card p-4 text-center">
+          <h4 class="mb-3">Результат</h4>
+          {% if img_url %}
+          <img src="{{ img_url }}" class="preview-img mb-3" alt="Uploaded" />
+          {% endif %}
+          <p class="fs-5">{{ result }}</p>
+          <a href="/" class="btn btn-outline-secondary mt-3">Загрузить другое</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  ></script>
+</body>
+</html>
