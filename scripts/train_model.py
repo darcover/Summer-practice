@@ -3,12 +3,15 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras import layers, models, optimizers
 import matplotlib.pyplot as plt
 
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
 img_height, img_width = 150, 150
 batch_size = 16
-epochs = 13
+epochs = 13  
 
-train_dir = os.path.join('..', 'data', 'train')
-val_dir   = os.path.join('..', 'data', 'validation')
+
+train_dir = os.path.join(project_root, 'data', 'train')
+val_dir   = os.path.join(project_root, 'data', 'validation')
 
 train_datagen = ImageDataGenerator(
     rescale=1./255,
@@ -56,6 +59,7 @@ model.compile(
 
 model.summary()
 
+
 history = model.fit(
     train_gen,
     steps_per_epoch=train_gen.samples // batch_size,
@@ -64,12 +68,18 @@ history = model.fit(
     validation_steps=val_gen.samples // batch_size
 )
 
-model.save('household_classifier.h5')
 
-acc = history.history['accuracy']
+model_path    = os.path.join(project_root, 'household_classifier.h5')
+accuracy_path = os.path.join(project_root, 'accuracy.png')
+loss_path     = os.path.join(project_root, 'loss.png')
+
+
+model.save(model_path)
+
+acc     = history.history['accuracy']
 val_acc = history.history['val_accuracy']
-loss = history.history['loss']
-val_loss = history.history['val_loss']
+loss    = history.history['loss']
+val_loss= history.history['val_loss']
 epochs_range = range(epochs)
 
 plt.figure()
@@ -77,13 +87,13 @@ plt.plot(epochs_range, acc,    label='train_acc')
 plt.plot(epochs_range, val_acc, label='val_acc')
 plt.legend()
 plt.title('Accuracy')
-plt.savefig('accuracy.png')
+plt.savefig(accuracy_path)
 
 plt.figure()
 plt.plot(epochs_range, loss,     label='train_loss')
 plt.plot(epochs_range, val_loss,  label='val_loss')
 plt.legend()
 plt.title('Loss')
-plt.savefig('loss.png')
+plt.savefig(loss_path)
 
-print('Training complete. Model and plots saved.')
+print(f'Training complete. Model saved to:\n  {model_path}\nPlots saved to:\n  {accuracy_path}\n  {loss_path}')
